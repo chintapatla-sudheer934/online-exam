@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Administrator",
+      "email": "admin@example.com",
+      "password": "$2a$10$ctGD6EXCS2RwpbVyLqXoB.gN6kdVmb.ABFmxpo/vpAPWLJD5NoYFG",
+      "role": "admin"
+    }
+  ],
+  "exams": [],
+  "questions": [],
+  "results": [],
+  "answers": [],
+  "nextUserId": 2,
+  "nextExamId": 1,
+  "nextQuestionId": 1,
+  "nextResultId": 1
+}

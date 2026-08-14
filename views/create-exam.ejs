@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Create Exam</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <strong>
+        Online Examination System
+    </strong>
+
+    <div>
+
+        <a href="/admin">
+            Dashboard
+        </a>
+
+        |
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+<% if (!exam) { %>
+
+    <h1>Create New Exam</h1>
+
+    <% if (error) { %>
+
+        <div class="error">
+            <%= error %>
+        </div>
+
+    <% } %>
+
+    <form
+        action="/admin/exam/create"
+        method="POST"
+        class="form-card"
+    >
+
+        <label>Exam Title</label>
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Cloud Computing Exam"
+            required
+        >
+
+        <label>Description</label>
+
+        <textarea
+            name="description"
+            placeholder="Exam description"
+        ></textarea>
+
+        <label>Duration (minutes)</label>
+
+        <input
+            type="number"
+            name="duration"
+            value="30"
+            min="1"
+            required
+        >
+
+        <button type="submit">
+            Create Exam
+        </button>
+
+    </form>
+
+<% } else { %>
+
+    <h1>
+        <%= exam.title %>
+    </h1>
+
+    <p>
+        <%= exam.description %>
+    </p>
+
+    <p>
+        Duration:
+        <%= exam.duration %> minutes
+    </p>
+
+    <hr>
+
+    <h2>Add Question</h2>
+
+    <form
+        action="/admin/exam/<%= exam.id %>/questions"
+        method="POST"
+        class="form-card"
+    >
+
+        <label>Question</label>
+
+        <textarea
+            name="question"
+            placeholder="Enter question"
+            required
+        ></textarea>
+
+        <label>Option A</label>
+
+        <input
+            type="text"
+            name="option_a"
+            required
+        >
+
+        <label>Option B</label>
+
+        <input
+            type="text"
+            name="option_b"
+            required
+        >
+
+        <label>Option C</label>
+
+        <input
+            type="text"
+            name="option_c"
+            required
+        >
+
+        <label>Option D</label>
+
+        <input
+            type="text"
+            name="option_d"
+            required
+        >
+
+        <label>Correct Answer</label>
+
+        <select
+            name="correct_answer"
+            required
+        >
+
+            <option value="">
+                Select Answer
+            </option>
+
+            <option value="A">
+                A
+            </option>
+
+            <option value="B">
+                B
+            </option>
+
+            <option value="C">
+                C
+            </option>
+
+            <option value="D">
+                D
+            </option>
+
+        </select>
+
+        <button type="submit">
+            Add Question
+        </button>
+
+    </form>
+
+    <h2>
+        Questions
+        (<%= questions.length %>)
+    </h2>
+
+    <% questions.forEach((q, index) => { %>
+
+        <div class="question-card">
+
+            <h3>
+                Question <%= index + 1 %>
+            </h3>
+
+            <p>
+                <strong>
+                    <%= q.question %>
+                </strong>
+            </p>
+
+            <p>
+                A. <%= q.option_a %>
+            </p>
+
+            <p>
+                B. <%= q.option_b %>
+            </p>
+
+            <p>
+                C. <%= q.option_c %>
+            </p>
+
+            <p>
+                D. <%= q.option_d %>
+            </p>
+
+            <p>
+                Correct:
+                <strong>
+                    <%= q.correct_answer %>
+                </strong>
+            </p>
+
+            <form
+                action="/admin/question/<%= q.id %>/delete"
+                method="POST"
+                onsubmit="return confirm('Delete question?')"
+            >
+
+                <button class="danger">
+                    Delete Question
+                </button>
+
+            </form>
+
+        </div>
+
+    <% }) %>
+
+    <a
+        href="/admin"
+        class="button secondary"
+    >
+        Back to Admin
+    </a>
+
+<% } %>
+
+</div>
+
+</body>
+</html>

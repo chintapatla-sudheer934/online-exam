@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Exam Answers</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <strong>
+        Exam Answers
+    </strong>
+
+    <a href="/logout">
+        Logout
+    </a>
+
+</nav>
+
+<div class="container">
+
+    <h1>
+        <%= result.exam_title %>
+    </h1>
+
+    <p>
+        Student:
+        <strong>
+            <%= result.student_name %>
+        </strong>
+    </p>
+
+    <p>
+        Score:
+        <strong>
+            <%= result.score %> /
+            <%= result.total %>
+        </strong>
+    </p>
+
+    <% answers.forEach((answer, index) => { %>
+
+        <div class="answer-card">
+
+            <h3>
+                Question <%= index + 1 %>
+            </h3>
+
+            <p>
+                <strong>
+                    <%= answer.question %>
+                </strong>
+            </p>
+
+            <p>
+
+                Your Answer:
+
+                <% if (
+                    answer.selected_answer ===
+                    answer.correct_answer
+                ) { %>
+
+                    <span class="correct">
+                        <%= answer.selected_answer %>
+                    </span>
+
+                <% } else { %>
+
+                    <span class="wrong">
+                        <%= answer.selected_answer ||
+                            "Not Answered" %>
+                    </span>
+
+                <% } %>
+
+            </p>
+
+            <p>
+
+                Correct Answer:
+
+                <strong class="correct">
+                    <%= answer.correct_answer %>
+                </strong>
+
+            </p>
+
+        </div>
+
+    <% }) %>
+
+    <a
+        href="/student"
+        class="button"
+    >
+        Back to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

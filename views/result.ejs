@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Exam Result</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <strong>
+        Online Examination System
+    </strong>
+
+    <a href="/logout">
+        Logout
+    </a>
+
+</nav>
+
+<div class="container">
+
+    <div class="result-card">
+
+        <h1>
+            Exam Result
+        </h1>
+
+        <h2>
+            <%= result.exam_title %>
+        </h2>
+
+        <p>
+            Student:
+            <strong>
+                <%= result.student_name %>
+            </strong>
+        </p>
+
+        <div class="score">
+
+            <%= result.score %>
+            /
+            <%= result.total %>
+
+        </div>
+
+        <div class="percentage">
+
+            <%= result.total > 0
+                ? Math.round(
+                    result.score /
+                    result.total * 100
+                )
+                : 0
+            %>%
+
+        </div>
+
+        <p>
+            Marks Obtained
+        </p>
+
+        <div class="actions">
+
+            <a
+                href="/student/result/<%= result.id %>/answers"
+                class="button"
+            >
+                View Answers
+            </a>
+
+            <a
+                href="/student"
+                class="button secondary"
+            >
+                Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

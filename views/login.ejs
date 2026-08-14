@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Exam - Login</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h1>Online Exam System</h1>
+
+        <h2>Login</h2>
+
+        <% if (error) { %>
+            <div class="error">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <form action="/login" method="POST">
+
+            <label>Email</label>
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label>Password</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+        <p>
+            Don't have an account?
+            <a href="/register">Create Student Account</a>
+        </p>
+
+        <hr>
+
+        <div class="admin-info">
+
+            <h3>Admin Login</h3>
+
+            <p>
+                <b>Email:</b>
+                admin@example.com
+            </p>
+
+            <p>
+                <b>Password:</b>
+                admin123
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

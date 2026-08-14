@@ -1,0 +1,290 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+nav {
+    background: #172554;
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 35px auto;
+}
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    background: white;
+    width: 420px;
+    max-width: 95%;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.auth-card h1 {
+    text-align: center;
+    color: #172554;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+button,
+.button {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover,
+.button:hover {
+    background: #1d4ed8;
+}
+
+button:disabled {
+    background: #94a3b8;
+}
+
+.secondary {
+    background: #64748b;
+}
+
+.danger {
+    background: #dc2626;
+}
+
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.admin-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eff6ff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card,
+.form-card,
+.question-card,
+.answer-card,
+.result-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow:
+        0 5px 20px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    color: #172554;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+}
+
+.success {
+    background: #16a34a;
+}
+
+.warning {
+    background: #f59e0b;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.actions form {
+    display: inline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    margin-bottom: 35px;
+}
+
+th,
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+th {
+    background: #172554;
+    color: white;
+}
+
+.empty {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.exam-header {
+    background: #172554;
+    color: white;
+    padding: 30px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.option {
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #dbeafe;
+}
+
+.option input {
+    width: auto;
+    margin-right: 10px;
+}
+
+.submit-exam {
+    width: 100%;
+    font-size: 18px;
+    padding: 16px;
+}
+
+#timer {
+    background: #dc2626;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.result-card {
+    max-width: 650px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.score {
+    font-size: 60px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.percentage {
+    font-size: 35px;
+    font-weight: bold;
+    color: #16a34a;
+}
+
+.correct {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.wrong {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th,
+    td {
+        padding: 8px;
+    }
+}

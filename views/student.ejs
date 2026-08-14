@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <strong>
+        Online Examination System
+    </strong>
+
+    <div>
+
+        Welcome,
+        <%= user.name %>
+
+        |
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <h1>
+        Student Dashboard
+    </h1>
+
+    <h2>
+        Available Exams
+    </h2>
+
+    <div class="cards">
+
+        <% if (exams.length === 0) { %>
+
+            <div class="empty">
+                No exams available.
+            </div>
+
+        <% } %>
+
+        <% exams.forEach(exam => { %>
+
+            <div class="card">
+
+                <h3>
+                    <%= exam.title %>
+                </h3>
+
+                <p>
+                    <%= exam.description %>
+                </p>
+
+                <p>
+                    Questions:
+                    <%= exam.question_count %>
+                </p>
+
+                <p>
+                    Duration:
+                    <%= exam.duration %>
+                    minutes
+                </p>
+
+                <% if (exam.question_count > 0) { %>
+
+                    <a
+                        href="/student/exam/<%= exam.id %>"
+                        class="button"
+                    >
+                        Start Exam
+                    </a>
+
+                <% } %>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+    <h2>
+        My Results
+    </h2>
+
+    <table>
+
+        <tr>
+
+            <th>Exam</th>
+            <th>Score</th>
+            <th>Percentage</th>
+            <th>Result</th>
+
+        </tr>
+
+        <% results.forEach(result => { %>
+
+            <tr>
+
+                <td>
+                    <%= result.exam_title %>
+                </td>
+
+                <td>
+                    <%= result.score %> /
+                    <%= result.total %>
+                </td>
+
+                <td>
+
+                    <%= result.total > 0
+                        ? Math.round(
+                            result.score /
+                            result.total * 100
+                        )
+                        : 0
+                    %>%
+
+                </td>
+
+                <td>
+
+                    <a
+                        href="/student/result/<%= result.id %>"
+                    >
+                        View Marks
+                    </a>
+
+                </td>
+
+            </tr>
+
+        <% }) %>
+
+    </table>
+
+</div>
+
+</body>
+</html>

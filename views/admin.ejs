@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="/style.css"
+    >
+
+</head>
+
+<body>
+
+<nav>
+
+    <strong>
+        Online Examination System
+    </strong>
+
+    <div>
+
+        Welcome,
+        <%= user.name %>
+
+        |
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>Admin Dashboard</h1>
+
+            <p>
+                Manage exams and students.
+            </p>
+
+        </div>
+
+        <a
+            href="/admin/exam/create"
+            class="button"
+        >
+            + Create Exam
+        </a>
+
+    </div>
+
+    <h2>Exams</h2>
+
+    <div class="cards">
+
+        <% if (exams.length === 0) { %>
+
+            <div class="empty">
+                No exams created.
+            </div>
+
+        <% } %>
+
+        <% exams.forEach(exam => { %>
+
+            <div class="card">
+
+                <h3>
+                    <%= exam.title %>
+                </h3>
+
+                <p>
+                    <%= exam.description %>
+                </p>
+
+                <p>
+                    Questions:
+                    <strong>
+                        <%= exam.question_count %>
+                    </strong>
+                </p>
+
+                <p>
+                    Duration:
+                    <%= exam.duration %>
+                    minutes
+                </p>
+
+                <% if (exam.published) { %>
+
+                    <span
+                        class="badge success"
+                    >
+                        Published
+                    </span>
+
+                <% } else { %>
+
+                    <span
+                        class="badge warning"
+                    >
+                        Draft
+                    </span>
+
+                <% } %>
+
+                <div class="actions">
+
+                    <a
+                        href="/admin/exam/<%= exam.id %>/questions"
+                        class="button"
+                    >
+                        Questions
+                    </a>
+
+                    <% if (exam.published) { %>
+
+                        <form
+                            action="/admin/exam/<%= exam.id %>/unpublish"
+                            method="POST"
+                        >
+
+                            <button class="secondary">
+                                Unpublish
+                            </button>
+
+                        </form>
+
+                    <% } else { %>
+
+                        <form
+                            action="/admin/exam/<%= exam.id %>/publish"
+                            method="POST"
+                        >
+
+                            <button>
+                                Publish
+                            </button>
+
+                        </form>
+
+                    <% } %>
+
+                    <form
+                        action="/admin/exam/<%= exam.id %>/delete"
+                        method="POST"
+                        onsubmit="return confirm('Delete exam?')"
+                    >
+
+                        <button class="danger">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+    <h2>Registered Students</h2>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+
+        </tr>
+
+        <% students.forEach(student => { %>
+
+            <tr>
+
+                <td>
+                    <%= student.id %>
+                </td>
+
+                <td>
+                    <%= student.name %>
+                </td>
+
+                <td>
+                    <%= student.email %>
+                </td>
+
+            </tr>
+
+        <% }) %>
+
+    </table>
+
+    <h2>Student Results</h2>
+
+    <table>
+
+        <tr>
+
+            <th>Student</th>
+            <th>Exam</th>
+            <th>Score</th>
+            <th>Percentage</th>
+            <th>Answers</th>
+
+        </tr>
+
+        <% results.forEach(result => { %>
+
+            <tr>
+
+                <td>
+                    <%= result.student_name %>
+                </td>
+
+                <td>
+                    <%= result.exam_title %>
+                </td>
+
+                <td>
+                    <%= result.score %> /
+                    <%= result.total %>
+                </td>
+
+                <td>
+
+                    <%= result.total > 0
+                        ? Math.round(
+                            result.score /
+                            result.total * 100
+                        )
+                        : 0
+                    %>%
+
+                </td>
+
+                <td>
+
+                    <a
+                        href="/admin/result/<%= result.id %>/answers"
+                    >
+                        View Answers
+                    </a>
+
+                </td>
+
+            </tr>
+
+        <% }) %>
+
+    </table>
+
+</div>
+
+</body>
+</html>
